@@ -1,337 +1,287 @@
+<?php 
+require_once "../config/conn.php";
+$sql="SELECT * FROM mediciones WHERE temperatura IS NOT NULL AND hum_aire IS NOT NULL AND sensacion_termica IS NOT NULL ORDER BY fecha_medicion desc";
+$lastTemp = ejecutarConsultaUnica($sql);
+$sql="SELECT hum_tierra FROM mediciones WHERE hum_tierra IS NOT NULL ORDER BY fecha_medicion desc";
+$lastMOI = ejecutarConsultaUnica($sql);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <?php require_once "header.php"; ?>
 <body class="hold-transition sidebar-mini layout-fixed">
-<div class="wrapper">
+  <div class="wrapper">
 
-  <!-- Preloader -->
-  <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__shake" src="<?php echo $ruta ?>dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
-  </div>
-
-  <!-- Navbar -->
-  <?php require_once "nav.php"; ?>
-  <!-- /.navbar -->
-
-  <!-- Main Sidebar Container -->
-  <?php require_once "menu.php"; ?>
-
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0">Dashboard</h1>
-          </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard v1</li>
-            </ol>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
+    <!-- Preloader -->
+    <div class="preloader flex-column justify-content-center align-items-center">
+      <img class="animation__shake" src="<?php echo $ruta ?>dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
     </div>
-    <!-- /.content-header -->
 
-    <!-- Main content -->
-    <section class="content">
-      <div class="container-fluid">
-        <!-- Small boxes (Stat box) -->
-        <div class="row">
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-info">
-              <div class="inner">
-                <h3>150</h3>
+    <!-- Navbar -->
+    <?php require_once "nav.php"; ?>
+    <!-- /.navbar -->
 
-                <p>Temperatura</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-bag"></i>
-              </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-success">
-              <div class="inner">
-                <h3>53<sup style="font-size: 20px">%</sup></h3>
+    <!-- Main Sidebar Container -->
+    <?php require_once "menu.php"; ?>
 
-                <p>Humedad</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-stats-bars"></i>
-              </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-warning">
-              <div class="inner">
-                <h3>44</h3>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <div class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1 class="m-0">Dashboard</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active">Dashboard</li>
+              </ol>
+            </div><!-- /.col -->
+          </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+      </div>
+      <!-- /.content-header -->
 
-                <p>Sénsacion térmica</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-person-add"></i>
-              </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-danger">
-              <div class="inner">
-                <h3>65</h3>
+      <!-- Main content -->
+      <section class="content">
+        <div class="container-fluid">
+          <!-- Small boxes (Stat box) -->
+          <div class="row">
+            <div class="col-lg-3 col-6">
+              <!-- small box -->
+              <div class="small-box bg-info">
+                <div class="inner">
+                  <h3><?php echo $lastTemp['temperatura']; ?> ºC</h3>
 
-                <p>Humedad tierra</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-pie-graph"></i>
-              </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-        </div>
-        <!-- /.row -->
-        <!-- Main row -->
-        <div class="row">
-          <!-- Left col -->
-          <section class="col-lg-7 connectedSortable">
-            <!-- Custom tabs (Charts with tabs)-->
-            <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">
-                  <i class="fas fa-chart-pie mr-1"></i>
-                  Sales
-                </h3>
-                <div class="card-tools">
-                  <ul class="nav nav-pills ml-auto">
-                    <li class="nav-item">
-                      <a class="nav-link active" href="#mediciones-chart" data-toggle="tab">Area</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="#sales-chart" data-toggle="tab">Donut</a>
-                    </li>
-                  </ul>
+                  <p>Temperatura</p>
                 </div>
-              </div><!-- /.card-header -->
-              <div class="card-body">
-                <div class="tab-content p-0">
-                  <!-- Morris chart - Sales -->
-                  <div class="chart tab-pane active" id="revmedicionesenue-chart"
-                       style="position: relative; height: 300px;">
-                      <canvas id="mediciones-chart-canvas" height="300" style="height: 300px;"></canvas>
-                   </div>
-                  <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;">
-                    <canvas id="sales-chart-canvas" height="300" style="height: 300px;"></canvas>
+                <div class="icon">
+                  <i class="fa fa-thermometer-half"></i>
+                </div>
+                <a href="../vistas/temperaturaG.php" class="small-box-footer">Mas información <i class="fas fa-arrow-circle-right"></i></a>
+              </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-6">
+              <!-- small box -->
+              <div class="small-box bg-success">
+                <div class="inner">
+                  <h3><?php echo $lastTemp['hum_aire']; ?><sup style="font-size: 20px">%</sup></h3>
+
+                  <p>Humedad</p>
+                </div>
+                <div class="icon">
+                  <i class="fas fa-tint"></i>
+                </div>
+                <a href="../vistas/humedadG.php" class="small-box-footer">Mas información <i class="fas fa-arrow-circle-right"></i></a>
+              </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-6">
+              <!-- small box -->
+              <div class="small-box bg-warning">
+                <div class="inner">
+                  <h3><?php echo $lastTemp['sensacion_termica']; ?> ºC</h3>
+
+                  <p>Sénsacion térmica</p>
+                </div>
+                <div class="icon">
+                  <i class="fas fa-sun"></i>
+                </div>
+                <a href="../vistas/sensacionTermicaG.php" class="small-box-footer">Mas información <i class="fas fa-arrow-circle-right"></i></a>
+              </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-6">
+              <!-- small box -->
+              <div class="small-box bg-danger">
+                <div class="inner">
+                  <h3><?php echo $lastMOI['hum_tierra']; ?><sup style="font-size: 20px">%</sup></h3>
+
+                  <p>Humedad tierra</p>
+                </div>
+                <div class="icon">
+                  <i class="fab fa-pagelines"></i>
+                </div>
+                <a href="../vistas/humedadTG.php" class="small-box-footer">Mas información <i class="fas fa-arrow-circle-right"></i></a>
+              </div>
+            </div>
+            <!-- ./col -->
+          </div>
+          <!-- /.row -->
+          <!-- Main row -->
+          <div class="row">
+            <!-- Left col -->
+            <section class="col-lg-7 connectedSortable">
+              <!-- Custom tabs (Charts with tabs)-->
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">
+                    <i class="fas fa-chart-area mr-1"></i>
+                    DHT
+                  </h3>
+                  <div class="card-tools">
+                    <a class="nav-link active" href="#mediciones-chart" data-toggle="tab"></a>
                   </div>
-                </div>
-              </div><!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-
-           
-          </section>
-          <!-- /.Left col -->
-          <!-- right col (We are only adding the ID to make the widgets sortable)-->
-          <section class="col-lg-5 connectedSortable">
- <!-- Calendar -->
- <div class="card bg-gradient-success">
-              <div class="card-header border-0">
-
-                <h3 class="card-title">
-                  <i class="far fa-calendar-alt"></i>
-                  Calendar
-                </h3>
-                <!-- tools card -->
-                <div class="card-tools">
-                  <!-- button with a dropdown -->
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown" data-offset="-52">
-                      <i class="fas fa-bars"></i>
-                    </button>
-                    <div class="dropdown-menu" role="menu">
-                      <a href="#" class="dropdown-item">Add new event</a>
-                      <a href="#" class="dropdown-item">Clear events</a>
-                      <div class="dropdown-divider"></div>
-                      <a href="#" class="dropdown-item">View calendar</a>
+                </div><!-- /.card-header -->
+                <div class="card-body">
+                  <div class="tab-content p-0">
+                    <!-- Morris chart - Sales -->
+                    <div class="chart tab-pane active" id="mediciones-chart" style="position: relative; height: 300px;">
+                      <canvas id="mediciones-chart-canvas" height="300" style="height: 300px;"></canvas>
+                    </div>
+                    <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;">
+                      <canvas id="sales-chart-canvas" height="300" style="height: 300px;"></canvas>
                     </div>
                   </div>
-                  <button type="button" class="btn btn-success btn-sm" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn btn-success btn-sm" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
-                  </button>
-                </div>
-                <!-- /. tools -->
+                </div><!-- /.card-body -->
               </div>
-              <!-- /.card-header -->
-              <div class="card-body pt-0">
-                <!--The calendar -->
-                <div id="calendar" style="width: 100%"></div>
+              <!-- /.card -->
+
+
+
+            </section>
+            <!-- /.Left col -->
+            <!-- right col (We are only adding the ID to make the widgets sortable)-->
+            <section class="col-lg-5 connectedSortable">
+              <!-- Custom tabs (Charts with tabs)-->
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">
+                    <i class="fas fa-chart-area mr-1"></i>
+                    Capacitivos
+                  </h3>
+                  <div class="card-tools">
+                    <a class="nav-link active" href="#cap-chart" data-toggle="tab"></a>
+                  </div>
+                </div><!-- /.card-header -->
+                <div class="card-body">
+                  <div class="tab-content p-0">
+                    <!-- Morris chart - Sales -->
+                    <div class="chart tab-pane active" id="cap-chart" style="position: relative; height: 300px;">
+                      <canvas id="cap-chart-canvas" height="300" style="height: 300px;"></canvas>
+                    </div>
+                    <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;">
+                      <canvas id="sales-chart-canvas" height="300" style="height: 300px;"></canvas>
+                    </div>
+                  </div>
+                </div><!-- /.card-body -->
               </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-            <!-- Map card -->
-            <div class="card bg-gradient-primary">
-              <div class="card-header border-0">
-                <h3 class="card-title">
-                  <i class="fas fa-map-marker-alt mr-1"></i>
-                  Visitors
-                </h3>
-                <!-- card tools -->
-                <div class="card-tools">
-                  <button type="button" class="btn btn-primary btn-sm daterange" title="Date range">
+              <!-- /.card -->
+              <!-- Calendar -->
+              <div class="card bg-gradient-success">
+                <div class="card-header border-0">
+
+                  <h3 class="card-title">
                     <i class="far fa-calendar-alt"></i>
-                  </button>
-                  <button type="button" class="btn btn-primary btn-sm" data-card-widget="collapse" title="Collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
+                    Calendar
+                  </h3>
+                  <!-- tools card -->
+                  <div class="card-tools">
+                    <!-- button with a dropdown -->
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown" data-offset="-52">
+                        <i class="fas fa-bars"></i>
+                      </button>
+                      <div class="dropdown-menu" role="menu">
+                        <a href="#" class="dropdown-item">Add new event</a>
+                        <a href="#" class="dropdown-item">Clear events</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">View calendar</a>
+                      </div>
+                    </div>
+                    <button type="button" class="btn btn-success btn-sm" data-card-widget="collapse">
+                      <i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-success btn-sm" data-card-widget="remove">
+                      <i class="fas fa-times"></i>
+                    </button>
+                  </div>
+                  <!-- /. tools -->
                 </div>
-                <!-- /.card-tools -->
-              </div>
-              <div class="card-body">
-                <div id="world-map" style="height: 250px; width: 100%;"></div>
-              </div>
-              <!-- /.card-body-->
-              <div class="card-footer bg-transparent">
-                <div class="row">
-                  <div class="col-4 text-center">
-                    <div id="sparkline-1"></div>
-                    <div class="text-white">Visitors</div>
-                  </div>
-                  <!-- ./col -->
-                  <div class="col-4 text-center">
-                    <div id="sparkline-2"></div>
-                    <div class="text-white">Online</div>
-                  </div>
-                  <!-- ./col -->
-                  <div class="col-4 text-center">
-                    <div id="sparkline-3"></div>
-                    <div class="text-white">Sales</div>
-                  </div>
-                  <!-- ./col -->
+                <!-- /.card-header -->
+                <div class="card-body pt-0">
+                  <!--The calendar -->
+                  <div id="calendar" style="width: 100%"></div>
                 </div>
-                <!-- /.row -->
+                <!-- /.card-body -->
               </div>
-            </div>
-            <!-- /.card -->
+              <!-- /.card -->
+              <!-- Map card -->
+                <!-- /.card-body-->
+                     
+              <!-- /.card -->
 
-            <!-- solid sales graph -->
-            <div class="card bg-gradient-info">
-              <div class="card-header border-0">
-                <h3 class="card-title">
-                  <i class="fas fa-th mr-1"></i>
-                  Sales Graph
-                </h3>
+              <!-- solid sales graph -->
+              <div class="card bg-gradient-info">
+                <div class="card-header border-0">
+                  <h3 class="card-title">
+                    <i class="fas fa-th mr-1"></i>
+                    Sales Graph
+                  </h3>
 
-                <div class="card-tools">
-                  <button type="button" class="btn bg-info btn-sm" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn bg-info btn-sm" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
-                  </button>
+                  <div class="card-tools">
+                    <button type="button" class="btn bg-info btn-sm" data-card-widget="collapse">
+                      <i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn bg-info btn-sm" data-card-widget="remove">
+                      <i class="fas fa-times"></i>
+                    </button>
+                  </div>
                 </div>
-              </div>
-              <div class="card-body">
-                <canvas class="chart" id="line-chart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-              </div>
-              <!-- /.card-body -->
-              <div class="card-footer bg-transparent">
-                <div class="row">
-                  <div class="col-4 text-center">
-                    <input type="text" class="knob" data-readonly="true" value="20" data-width="60" data-height="60"
-                           data-fgColor="#39CCCC">
-
-                    <div class="text-white">Mail-Orders</div>
-                  </div>
-                  <!-- ./col -->
-                  <div class="col-4 text-center">
-                    <input type="text" class="knob" data-readonly="true" value="50" data-width="60" data-height="60"
-                           data-fgColor="#39CCCC">
-
-                    <div class="text-white">Online</div>
-                  </div>
-                  <!-- ./col -->
-                  <div class="col-4 text-center">
-                    <input type="text" class="knob" data-readonly="true" value="30" data-width="60" data-height="60"
-                           data-fgColor="#39CCCC">
-
-                    <div class="text-white">In-Store</div>
-                  </div>
-                  <!-- ./col -->
+                <div class="card-body">
+                  <canvas class="chart" id="line-chart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                 </div>
-                <!-- /.row -->
+                <!-- /.card-body -->
+                <div class="card-footer bg-transparent">
+                  <div class="row">
+                    <div class="col-4 text-center">
+                      <input type="text" class="knob" data-readonly="true" value="20" data-width="60" data-height="60" data-fgColor="#39CCCC">
+
+                      <div class="text-white">Mail-Orders</div>
+                    </div>
+                    <!-- ./col -->
+                    <div class="col-4 text-center">
+                      <input type="text" class="knob" data-readonly="true" value="50" data-width="60" data-height="60" data-fgColor="#39CCCC">
+
+                      <div class="text-white">Online</div>
+                    </div>
+                    <!-- ./col -->
+                    <div class="col-4 text-center">
+                      <input type="text" class="knob" data-readonly="true" value="30" data-width="60" data-height="60" data-fgColor="#39CCCC">
+
+                      <div class="text-white">In-Store</div>
+                    </div>
+                    <!-- ./col -->
+                  </div>
+                  <!-- /.row -->
+                </div>
+                <!-- /.card-footer -->
               </div>
-              <!-- /.card-footer -->
-            </div>
-            <!-- /.card -->
-          </section>
-          <!-- right col -->
-        </div>
-        <!-- /.row (main row) -->
-      </div><!-- /.container-fluid -->
-    </section> 
-    <!-- /.content -->
+              <!-- /.card -->
+            </section>
+            <!-- right col -->
+          </div>
+          <!-- /.row (main row) -->
+        </div><!-- /.container-fluid -->
+      </section>
+      <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <?php require_once "footer.php"; ?>
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
   </div>
-  <!-- /.content-wrapper -->
+  <!-- ./wrapper -->
+  <script type="text/javascript" src="../vistas/codigosjs/mediciones.js"></script>
+  <script type="text/javascript" src="../vistas/codigosjs/capacitivos.js"></script>
 
-  <?php require_once "footer.php"; ?>
-
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
-</div>
-<!-- ./wrapper -->
-<script type="text/javascript" src="../vistas/codigosjs/mediciones.js"></script>
-<!-- jQuery -->
-<script src="<?php echo $ruta ?>plugins/jquery/jquery.min.js"></script>
-<!-- jQuery UI 1.11.4 -->
-<script src="<?php echo $ruta ?>plugins/jquery-ui/jquery-ui.min.js"></script>
-<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-<script>
-  $.widget.bridge('uibutton', $.ui.button)
-</script>
-<!-- Bootstrap 4 -->
-<script src="<?php echo $ruta ?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- ChartJS -->
-<script src="<?php echo $ruta ?>plugins/chart.js/Chart.min.js"></script>
-<!-- Sparkline -->
-<script src="<?php echo $ruta ?>plugins/sparklines/sparkline.js"></script>
-<!-- JQVMap -->
-<script src="<?php echo $ruta ?>plugins/jqvmap/jquery.vmap.min.js"></script>
-<script src="<?php echo $ruta ?>plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
-<!-- jQuery Knob Chart -->
-<script src="<?php echo $ruta ?>plugins/jquery-knob/jquery.knob.min.js"></script>
-<!-- daterangepicker -->
-<script src="<?php echo $ruta ?>plugins/moment/moment.min.js"></script>
-<script src="<?php echo $ruta ?>plugins/daterangepicker/daterangepicker.js"></script>
-<!-- Tempusdominus Bootstrap 4 -->
-<script src="<?php echo $ruta ?>plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
-<!-- Summernote -->
-<script src="<?php echo $ruta ?>plugins/summernote/summernote-bs4.min.js"></script>
-<!-- overlayScrollbars -->
-<script src="<?php echo $ruta ?>plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-<!-- AdminLTE App -->
-<script src="<?php echo $ruta ?>dist/js/adminlte.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="<?php echo $ruta ?>dist/js/demo.js"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="<?php echo $ruta ?>dist/js/pages/dashboard.js"></script>
 </body>
+
 </html>

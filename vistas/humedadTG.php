@@ -98,7 +98,6 @@
   <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
-<script type="text/javascript" src="../vistas/codigosjs/humedadG.js"></script>
-
+<script type="text/javascript" src="../vistas/codigosjs/humedadTG.js"></script>
 </body>
 </html>

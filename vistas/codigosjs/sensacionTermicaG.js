@@ -44,7 +44,7 @@ fetchGraph()
     let aNuevo= [];
 
     data.forEach(element => {
-      temperatura.push(element['temperatura']);
+      temperatura.push(element['sensacion_termica']);
       
       fecha_medicion.push(element['fecha_medicion']);
       console.log(element['temperatura']);
@@ -55,7 +55,7 @@ fetchGraph()
       labels:  aNuevo,
       datasets: [
         {
-          label: 'Temperatura',
+          label: 'Sensación térmica',
           backgroundColor: 'rgba(255, 165, 0, 0.8)', // Orange
           borderColor:'rgba(255, 99, 71, 0.9)', // Tomato 
           pointRadius: false,

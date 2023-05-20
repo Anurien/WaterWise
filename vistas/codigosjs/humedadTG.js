@@ -14,7 +14,7 @@ function cancelarFormulario(){
 function fetchGraph() {
   return new Promise(function(resolve, reject) {
     $.ajax({
-      url: '../ajax/Mediciones.php?op=graphDHT',
+      url: '../ajax/Mediciones.php?op=graphCAP',
       method: "get",
       dataType: 'json',
       success: function(data) {
@@ -44,10 +44,9 @@ fetchGraph()
     let aNuevo= [];
 
     data.forEach(element => {
-      temperatura.push(element['temperatura']);
+      temperatura.push(element['hum_tierra']);
       
       fecha_medicion.push(element['fecha_medicion']);
-      console.log(element['temperatura']);
       aNuevo = fecha_medicion.slice(fecha_medicion.length-5)
     });
     //console.log(temperaturas);
@@ -55,7 +54,7 @@ fetchGraph()
       labels:  aNuevo,
       datasets: [
         {
-          label: 'Temperatura',
+          label: 'Humedad de la tierra',
           backgroundColor: 'rgba(255, 165, 0, 0.8)', // Orange
           borderColor:'rgba(255, 99, 71, 0.9)', // Tomato 
           pointRadius: false,

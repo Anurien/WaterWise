@@ -145,6 +145,7 @@ function charts() {
   /* Chart.js Charts */
   // Sales chart
   var medicionesChartCanvas = document.getElementById('mediciones-chart-canvas').getContext('2d')
+  //var capChartCanvas = document.getElementById('cap-chart-canvas').getContext('2d')
   // $('#revenue-chart').get(0).getContext('2d');
 
   /*$.ajax({
@@ -184,7 +185,7 @@ function charts() {
       data.forEach(element => {
         temperatura.push(element['temperatura']);
         hum_aire.push(element['hum_aire']);
-        //hum_tierra.push(element['hum_tierra']);
+        hum_tierra.push(element['hum_tierra']);
         sensacion_termica.push(element['sensacion_termica']);
         fecha_medicion.push(element['fecha_medicion']);
         console.log(element['temperatura']);
@@ -256,7 +257,12 @@ function charts() {
           yAxes: [{
             gridLines: {
               display: false
-            }
+            },
+            ticks: {
+              beginAtZero: true,
+              steps: 10,
+              stepValue: 5
+          }
           }]
         }
       }
