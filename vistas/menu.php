@@ -3,7 +3,7 @@
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
       <img src="<?php echo $ruta ?>dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">AdminLTE 3</span>
+      <span class="brand-text font-weight-light">WaterWise</span>
     </a>
 
     <!-- Sidebar -->
@@ -11,10 +11,10 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="<?php echo $ruta ?>dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+          <img src="<?php echo $ruta ?>dist/img/AdminLTELogo.png" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block">Walter White</a>
         </div>
       </div>
 
@@ -41,7 +41,6 @@
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Dashboard
-                <span class="right badge badge-danger">New</span>
               </p>
             </a>
           </li>
@@ -51,30 +50,29 @@
               <p>
                 Charts
                 <i class="fas fa-angle-left right"></i>
-                <span class="badge badge-info right">6</span>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="../vistas/mediciones_graphs.php" class="nav-link">
+                <a href="../vistas/temperaturaG.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Temperatura</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
+                <a href="../vistas/humedadG.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Humedad</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/layout/boxed.html" class="nav-link">
+                <a href="../vistas/sensacionTermicaG.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Sensación térmica</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/layout/fixed-sidebar.html" class="nav-link">
+                <a href="../vistas/humedadTG.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Humedad tierra</p>
                 </a>

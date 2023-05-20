@@ -11,6 +11,22 @@ class Mediciones{
         $sql="SELECT * FROM mediciones WHERE cod_medicion='idMediciones'";
         return ejecutarConsultaUnica($sql);
     }
+    public function insertar($idMedicion){
+        $sql="SELECT * FROM mediciones WHERE cod_medicion='idMediciones'";
+        return ejecutarConsultaUnica($sql);
+    }
+    public function activar($idMedicion){
+        $sql="SELECT * FROM mediciones WHERE cod_medicion='idMediciones'";
+        return ejecutarConsultaUnica($sql);
+    }
+    public function desactivar($idMedicion){
+        $sql="SELECT * FROM mediciones WHERE cod_medicion='idMediciones'";
+        return ejecutarConsultaUnica($sql);
+    }
+    public function editar($idMedicion){
+        $sql="SELECT * FROM mediciones WHERE cod_medicion='idMediciones'";
+        return ejecutarConsultaUnica($sql);
+    }
     
     public function listar(){
         $sql="SELECT * FROM mediciones";

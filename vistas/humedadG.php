@@ -48,12 +48,12 @@
               <div class="card-header">
                 <h3 class="card-title">
                   <i class="fas fa-chart-pie mr-1"></i>
-                  Temperatura
+                  Humedad
                 </h3>
                 <div class="card-tools">
                   <ul class="nav nav-pills ml-auto">
                     <li class="nav-item">
-                      <a class="nav-link active" href="#mediciones-chart" data-toggle="tab">Area</a>
+                      <a class="nav-link active" href="#mediciones-chart" data-toggle="tab"></a>
                     </li>
                   </ul>
                 </div>
@@ -98,7 +98,7 @@
   <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
-<script type="text/javascript" src="../vistas/codigosjs/temperaturaG.js"></script>
+<script type="text/javascript" src="../vistas/codigosjs/humedadG.js"></script>
 <!-- jQuery -->
 <script src="<?php echo $ruta ?>plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
