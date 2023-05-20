@@ -2,13 +2,71 @@ var tabla;
 
 function init(){
 charts();
-
 }
 
 function cancelarFormulario(){
     limpiar();
     mostrarFormulario(false);
 }
+function aplicarFiltro(startDate, endDate) {
+    // Convertir las fechas al formato requerido por la base de datos (puede variar según tu configuración)
+    const fechaInicio = startDate.format('YYYY-MM-DD');
+    const fechaFin = endDate.format('YYYY-MM-DD');
+  
+    // Realizar una solicitud a la base de datos para obtener los datos correspondientes al rango de fechas
+  
+    // Ejemplo utilizando jQuery.ajax
+    $.ajax({
+      url: '../ajax/Mediciones.php?op=graphDHT', 
+      method: "get",
+      data: {
+        startDate: fechaInicio,
+        endDate: fechaFin
+      },
+      success: function(response) {
+        const datosFiltrados = response; 
+        actualizarGrafica(datosFiltrados);
+      },
+      error: function(error) {
+        console.error('Error al obtener los datos de la base de datos:', error);
+      }
+    });
+  }
+
+function actualizarGrafica(datosFiltrados) {
+    // Obtener el contexto del lienzo de la gráfica
+    const canvas = document.getElementById('miGrafica');
+    const ctx = canvas.getContext('2d');
+  
+    // Limpiar el lienzo de la gráfica
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  
+    // Crear la nueva instancia de la gráfica con los datos filtrados
+    const nuevaGrafica = new Chart(ctx, {
+      type: 'line',
+      data: {
+        // Configurar los datos filtrados en el formato requerido por Chart.js
+        labels: datosFiltrados.map(item => item.label),
+        datasets: [
+          {
+            data: datosFiltrados.map(item => item.value),
+            label: 'Humedad ambiente',
+            backgroundColor: 'rgba(102, 204, 255, 0.9)', // Light Blue (relating to humidity)
+            borderColor: 'rgba(51, 153, 255, 0.8)', // Blue (relating to humidity)
+            pointRadius: false,
+            pointColor: '#3b8bbf', // Blue
+            pointStrokeColor: 'rgba(51, 153, 255, 1)', // Blue (relating to humidity)
+            pointHighlightFill: '#fff', // White
+            pointHighlightStroke: 'rgba(51, 153, 255, 1)', // Blue (relating to humidity)
+          }
+        ]
+      },
+      options: {
+        // Configurar las opciones de la gráfica según sea necesario
+        // (por ejemplo, ejes, leyenda, animaciones, etc.)
+      }
+    });
+  }
 
 
 function fetchGraph() {
@@ -34,7 +92,21 @@ function charts(){
      /* Chart.js Charts */
   // Sales chart
   var medicionesChartCanvas = document.getElementById('mediciones-chart-canvas').getContext('2d')
-
+  $('.daterange').daterangepicker({
+    ranges: {
+      Today: [moment(), moment()],
+      Yesterday: [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+      'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+      'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+      'This Month': [moment().startOf('month'), moment().endOf('month')],
+      'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+    },
+    startDate: moment().subtract(29, 'days'),
+    endDate: moment()
+  }, function (start, end) {
+    // eslint-disable-next-line no-alert
+     aplicarFiltro(start, end);
+  })
 
 fetchGraph()
   .then(function(data) {
@@ -82,7 +154,10 @@ fetchGraph()
             display: false,
             color: '#efefef',
             drawBorder: false
-          }
+          },
+          ticks: {
+            fontColor: '#efefef'
+        }
         }],
         yAxes: [{
           gridLines: {
@@ -93,7 +168,8 @@ fetchGraph()
           ticks: {
             beginAtZero: true,
             steps: 10,
-            stepValue: 5
+            stepValue: 5,
+            fontColor: '#efefef'
         }
         }]
       }
