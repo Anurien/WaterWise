@@ -56,13 +56,13 @@ fetchGraph()
       datasets: [
         {
           label: 'Sensación térmica',
-          backgroundColor: 'rgba(255, 165, 0, 0.8)', // Orange
-          borderColor:'rgba(255, 99, 71, 0.9)', // Tomato 
+          backgroundColor: 'rgba(255, 128, 0, 0.9)', // Naranja intenso
+          borderColor: 'rgba(255, 178, 0, 0.8)', // Naranja brillante
           pointRadius: false,
-          pointColor: '#3b8bbf', // Blue
-          pointStrokeColor: 'rgba(255, 165, 0, 1)', // Orange
-          pointHighlightFill: '#fff', // White
-          pointHighlightStroke: 'rgba(255, 165, 0, 1)', // Orange
+          pointColor: '#3b8bbf', // Azul
+          pointStrokeColor: 'rgba(255, 178, 0, 1)', // Naranja brillante
+          pointHighlightFill: '#fff', // Blanco
+          pointHighlightStroke: 'rgba(255, 178, 0, 1)', // Naranja brillante
           data: temperatura
         }
       ]

@@ -55,13 +55,13 @@ function charts() {
         datasets: [
          {
             label: 'Humedad de la tierra',
-            backgroundColor: 'rgba(80,141,180,0.9)',
-            borderColor: 'rgba(60,141,188,0.8)',
+            backgroundColor: 'rgba(138, 191, 105, 0.9)', // Green (nature-related)
+            borderColor: 'rgba(109, 158, 91, 0.8)', // Dark Green (nature-related)
             pointRadius: false,
-            pointColor: '#3b8bbg',
-            pointStrokeColor: 'rgba(60,141,188,1)',
-            pointHighlightFill: '#fff',
-            pointHighlightStroke: 'rgba(60,141,188,1)',
+            pointColor: '#3b8bbf', // Blue
+            pointStrokeColor: 'rgba(109, 158, 91, 1)', // Dark Green (nature-related)
+            pointHighlightFill: '#fff', // White
+            pointHighlightStroke: 'rgba(109, 158, 91, 1)', // Dark Green (nature-related)
             data: hum_tierra
           }
         ]

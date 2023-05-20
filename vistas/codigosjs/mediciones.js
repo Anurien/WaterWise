@@ -197,24 +197,24 @@ function charts() {
         datasets: [
           {
             label: 'Temperatura',
-            backgroundColor: 'rgba(60,101,188,0.9)',
-            borderColor: 'rgba(60,141,188,0.8)',
+            backgroundColor: 'rgba(255, 165, 0, 0.8)', // Orange
+            borderColor:'rgba(255, 99, 71, 0.9)', // Tomato 
             pointRadius: false,
-            pointColor: '#3b8bbf',
-            pointStrokeColor: 'rgba(60,141,188,1)',
-            pointHighlightFill: '#fff',
-            pointHighlightStroke: 'rgba(60,141,188,1)',
+            pointColor: '#3b8bbf', // Blue
+            pointStrokeColor: 'rgba(255, 165, 0, 1)', // Orange
+            pointHighlightFill: '#fff', // White
+            pointHighlightStroke: 'rgba(255, 165, 0, 1)', // Orange
             data: temperatura
           },
           {
             label: 'Humedad del aire',
-            backgroundColor: 'rgba(210, 214, 222, 1)',
-            borderColor: 'rgba(210, 214, 222, 1)',
+            backgroundColor: 'rgba(102, 204, 255, 0.9)', // Light Blue (relating to humidity)
+            borderColor: 'rgba(51, 153, 255, 0.8)', // Blue (relating to humidity)
             pointRadius: false,
-            pointColor: 'rgba(210, 214, 222, 1)',
-            pointStrokeColor: '#c1c7d1',
-            pointHighlightFill: '#fff',
-            pointHighlightStroke: 'rgba(220,220,220,1)',
+            pointColor: '#3b8bbf', // Blue
+            pointStrokeColor: 'rgba(51, 153, 255, 1)', // Blue (relating to humidity)
+            pointHighlightFill: '#fff', // White
+            pointHighlightStroke: 'rgba(51, 153, 255, 1)', // Blue (relating to humidity)
             data: hum_aire
           },
           /*{
@@ -230,13 +230,13 @@ function charts() {
           },*/
           {
             label: 'Sensacion termica',
-            backgroundColor: 'rgba(60,141,100,0.9)',
-            borderColor: 'rgba(60,141,188,0.8)',
+            backgroundColor: 'rgba(255, 128, 0, 0.9)', // Naranja intenso
+            borderColor: 'rgba(255, 178, 0, 0.8)', // Naranja brillante
             pointRadius: false,
-            pointColor: '#3b8bbc',
-            pointStrokeColor: 'rgba(60,141,188,1)',
-            pointHighlightFill: '#fff',
-            pointHighlightStroke: 'rgba(60,141,188,1)',
+            pointColor: '#3b8bbf', // Azul
+            pointStrokeColor: 'rgba(255, 178, 0, 1)', // Naranja brillante
+            pointHighlightFill: '#fff', // Blanco
+            pointHighlightStroke: 'rgba(255, 178, 0, 1)', // Naranja brillante
             data: sensacion_termica
           }
         ]

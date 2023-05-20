@@ -56,13 +56,15 @@ fetchGraph()
       datasets: [
         {
           label: 'Temperatura',
-          backgroundColor: 'rgba(255, 165, 0, 0.8)', // Orange
+          fill: false,
+          borderWidth: 2,
+          lineTension: 0,
+          spanGaps: true,
           borderColor:'rgba(255, 99, 71, 0.9)', // Tomato 
-          pointRadius: false,
-          pointColor: '#3b8bbf', // Blue
+          pointRadius: 3,
+          pointHoverRadius: 7,
+          pointColor: 'rgba(255, 99, 71, 0.9)', // Blue
           pointStrokeColor: 'rgba(255, 165, 0, 1)', // Orange
-          pointHighlightFill: '#fff', // White
-          pointHighlightStroke: 'rgba(255, 165, 0, 1)', // Orange
           data: temperatura
         }
       ]
@@ -77,12 +79,16 @@ fetchGraph()
       scales: {
         xAxes: [{
           gridLines: {
-            display: false
+            display: false,
+            color: '#efefef',
+            drawBorder: false
           }
         }],
         yAxes: [{
           gridLines: {
-            display: false
+            display: true,
+            color: '#efefef',
+            drawBorder: false
           },
           ticks: {
             beginAtZero: true,

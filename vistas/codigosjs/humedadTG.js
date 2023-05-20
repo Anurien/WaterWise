@@ -55,13 +55,13 @@ fetchGraph()
       datasets: [
         {
           label: 'Humedad de la tierra',
-          backgroundColor: 'rgba(255, 165, 0, 0.8)', // Orange
-          borderColor:'rgba(255, 99, 71, 0.9)', // Tomato 
+          backgroundColor: 'rgba(138, 191, 105, 0.9)', // Green (nature-related)
+          borderColor: 'rgba(109, 158, 91, 0.8)', // Dark Green (nature-related)
           pointRadius: false,
           pointColor: '#3b8bbf', // Blue
-          pointStrokeColor: 'rgba(255, 165, 0, 1)', // Orange
+          pointStrokeColor: 'rgba(109, 158, 91, 1)', // Dark Green (nature-related)
           pointHighlightFill: '#fff', // White
-          pointHighlightStroke: 'rgba(255, 165, 0, 1)', // Orange
+          pointHighlightStroke: 'rgba(109, 158, 91, 1)', // Dark Green (nature-related)
           data: temperatura
         }
       ]
