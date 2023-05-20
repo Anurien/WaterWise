@@ -44,7 +44,7 @@ $(function () {
     endDate: moment()
   }, function (start, end) {
     // eslint-disable-next-line no-alert
-    alert('You chose: ' + start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
+    //alert('You chose: ' + start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
   })
 
   /* jQueryKnob */

@@ -45,33 +45,33 @@
                         <!-- Left col -->
                         <section class="col-lg-7 connectedSortable">
                             <!-- Custom tabs (Charts with tabs)-->
-                            <div class="card">
-                                <div class="card-header">
+                           
+                            <!-- /.card -->
+                            <div class="card  bg-gradient-danger">
+                                <div class="card-header border-0">
                                     <h3 class="card-title">
-                                        <i class="fas fa-chart-pie mr-1"></i>
+                                        <i class="fa fa-thermometer-half mr-1"></i>
                                         Temperatura
                                     </h3>
+                                    <!-- card tools -->
                                     <div class="card-tools">
-                                        <ul class="nav nav-pills ml-auto">
-                                            <li class="nav-item">
-                                                <a class="nav-link active" href="#mediciones-chart" data-toggle="tab">Area</a>
-                                            </li>
-                                        </ul>
+                                        <button type="button" class="btn btn-danger btn-sm daterange" title="Date range">
+                                            <i class="far fa-calendar-alt"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-danger btn-sm" data-card-widget="collapse" title="Collapse">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
                                     </div>
-                                </div><!-- /.card-header -->
+                                    <!-- /.card-tools -->
+                                </div>
                                 <div class="card-body">
-                                    <div class="tab-content p-0">
-                                        <!-- Morris chart - Sales -->
-                                        <div class="chart tab-pane active" id="mediciones-chart" style="position: relative; height: 300px;">
-                                            <canvas id="mediciones-chart-canvas" height="300" style="height: 300px;"></canvas>
-                                        </div>
-                                        <div class="chart tab-pane" id="mediciones-chart" style="position: relative; height: 300px;">
-                                            <canvas id="mediciones-chart-canvas" height="300" style="height: 300px;"></canvas>
-                                        </div>
-                                    </div>
-                                </div><!-- /.card-body -->
+                                        <canvas id="mediciones-chart-canvas" height="300" style="height: 300px;"></canvas>
+                                </div>
+                                <!-- /.card-body-->
+                                <div class="card-footer bg-transparent">
+                                    <!-- /.row -->
+                                </div>
                             </div>
-                            <!-- /.card -->
 
                         </section>
                         <!-- /.Left col -->
@@ -99,7 +99,9 @@
     </div>
     <!-- ./wrapper -->
     <script type="text/javascript" src="../vistas/codigosjs/temperaturaG.js"></script>
-    
+    <script src="https://cdn.jsdelivr.net/npm/luxon@^2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-luxon@^1"></script>
+
 </body>
 
 </html>

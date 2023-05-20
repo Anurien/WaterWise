@@ -30,6 +30,8 @@ function fetchGraph() {
 // Usage
 
 
+
+
 function charts(){
      /* Chart.js Charts */
   // Sales chart
@@ -38,7 +40,6 @@ function charts(){
 fetchGraph()
   .then(function(data) {
     var temperatura =[];
-    
     var fecha_medicion  =[];
     let aNuevo= [];
 
@@ -82,7 +83,12 @@ fetchGraph()
         yAxes: [{
           gridLines: {
             display: false
-          }
+          },
+          ticks: {
+            beginAtZero: true,
+            steps: 10,
+            stepValue: 5
+        }
         }]
       }
     }
@@ -91,6 +97,11 @@ fetchGraph()
     // eslint-disable-next-line no-unused-vars
     var medicionesChart = new Chart(medicionesChartCanvas, { // lgtm[js/unused-local-variable]
       type: 'line',
+      data: medicionesChartData,
+      options: medicionesChartOptions
+    })
+    var medicionesBarChart = new Chart(medicionesChartCanvas, { // lgtm[js/unused-local-variable]
+      type: 'bar',
       data: medicionesChartData,
       options: medicionesChartOptions
     })
