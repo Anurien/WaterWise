@@ -125,7 +125,7 @@ function listar(){
 function fetchGraph() {
   return new Promise(function(resolve, reject) {
     $.ajax({
-      url: '../ajax/Mediciones.php?op=graph',
+      url: '../ajax/Mediciones.php?op=graphDHT',
       method: "get",
       dataType: 'json',
       success: function(data) {
@@ -179,18 +179,20 @@ fetchGraph()
     var hum_tierra =[] ;
     var sensacion_termica =[] ;
     var fecha_medicion  =[];
+    let aNuevo= [];
 
     data.forEach(element => {
       temperatura.push(element['temperatura']);
       hum_aire.push(element['hum_aire']);
-      hum_tierra.push(element['hum_tierra']);
+      //hum_tierra.push(element['hum_tierra']);
       sensacion_termica.push(element['sensacion_termica']);
       fecha_medicion.push(element['fecha_medicion']);
       console.log(element['temperatura']);
+      aNuevo = fecha_medicion.slice(fecha_medicion.length-5)
     });
     //console.log(temperaturas);
     var medicionesChartData = {
-      labels:  fecha_medicion,
+      labels:  aNuevo,
       datasets: [
         {
           label: 'Temperatura',
@@ -214,7 +216,7 @@ fetchGraph()
           pointHighlightStroke: 'rgba(220,220,220,1)',
           data: hum_aire
         },
-        {
+        /*{
           label: 'Humedad de la tierra',
           backgroundColor: 'rgba(80,141,180,0.9)',
           borderColor: 'rgba(60,141,188,0.8)',
@@ -224,7 +226,7 @@ fetchGraph()
           pointHighlightFill: '#fff',
           pointHighlightStroke: 'rgba(60,141,188,1)',
           data: hum_tierra
-        },
+        },*/
         {
           label: 'Sensacion termica',
           backgroundColor: 'rgba(60,141,100,0.9)',

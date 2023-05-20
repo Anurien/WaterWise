@@ -16,5 +16,13 @@ class Mediciones{
         $sql="SELECT * FROM mediciones";
         return ejecutarConsulta($sql);
     }
+    public function listarDHT(){
+        $sql="SELECT * FROM mediciones where cod_sensor = 1 or cod_sensor=2";
+        return ejecutarConsulta($sql);
+    }
+    public function listarCAP(){
+        $sql="SELECT * FROM mediciones where cod_sensor =5 or cod_sensor=6";
+        return ejecutarConsulta($sql);
+    }
 
 }

@@ -58,23 +58,42 @@ switch($_GET["op"]){
         );
         echo json_encode($result);
            break;
-           case "graph":
-            $respuesta =$mediciones->listar();
-            $data=array();
+    case "graphDHT":
+         $respuesta =$mediciones->listarDHT();
+         $data=array();
         
-            while($resp=$respuesta->fetch_assoc()){
+          while($resp=$respuesta->fetch_assoc()){
                 $data[]= $resp;
                 
                 /*echo '<pre>';
                 print_r($resp);
                 echo '</pre>';*/
-            };
-            $result=array(
+          };
+          $result=array(
                 "echo"=>1,
                 "totalRecords"=>count($data),
                 "iTotslRecords"=>count($data),
                 "aaData"=>$data
-            );
-            echo json_encode($data);
-            break;
+          );
+        echo json_encode($data);
+         break;
+    case "graphCAP":
+         $respuesta =$mediciones->listarCAP();
+         $data=array();
+           
+          while($resp=$respuesta->fetch_assoc()){
+                   $data[]= $resp;
+                   
+                   /*echo '<pre>';
+                   print_r($resp);
+                   echo '</pre>';*/
+          };
+           $result=array(
+                   "echo"=>1,
+                   "totalRecords"=>count($data),
+                   "iTotslRecords"=>count($data),
+                   "aaData"=>$data
+             );
+        echo json_encode($data);
+       break;
 }
