@@ -115,6 +115,15 @@ $(document).ready(function(){
                 sale_chart = new Chart(group_chart3, {
                     type:'bar',
                     data:chart_data,
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+    }
+}
                 
                 });
             }
