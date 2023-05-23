@@ -34,7 +34,7 @@
             <div class="card">
                 <div class="card-header">
                     <div class="row">
-                        <div class="col col-sm-9">Sales Data</div>
+                        <div class="col col-sm-9">Temperatura</div>
                         <div class="col col-sm-3">
                             <input type="text" id="daterange_textbox" class="form-control" readonly />
                         </div>
@@ -48,9 +48,9 @@
                         <table class="table table-striped table-bordered" id="order_table">
                             <thead>
                                 <tr>
-                                    <th>Order Number</th>
-                                    <th>Order Value</th>
-                                    <th>Order Date</th>
+                                    <th>Sensor</th>
+                                    <th>Temperatura ºC</th>
+                                    <th>Fecha de medición</th>
                                 </tr>
                             </thead>
                             <tbody></tbody>
