@@ -3,9 +3,8 @@
         {
             "name": "Win32",
             "includePath": [
-                "${workspaceFolder}/**",
-                "C:/Users/SrMagdalena/Documents/Arduino/libraries/LoRa/src",
-                "C:/Users/SrMagdalena/Documents/Arduino/libraries/DHT_sensor_library",
+                "aqui pon la ruta hacia tus librerias",
+                
             ],
             "defines": [
                 "_DEBUG",
